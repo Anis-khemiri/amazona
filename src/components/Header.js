@@ -4,7 +4,10 @@ import Logo from "../images/Logo.png";
 import searchIcon from "../images/icons/searchIcon.png";
 import shoppingCart from "../images/icons/shopping-cart.png";
 import "./Header.css";
+import { useAuth } from '../context/GlobalState';
 function Header() {
+  const {user} = useAuth();
+  console.log(user?.email)
   return (
     <div className="header">
     <Link to="/">
@@ -15,10 +18,10 @@ function Header() {
         <img className="header-searchIcon" src={searchIcon} alt="search-icon" />
       </div>
       <div className="header-nav">
-        <Link to="/">
+        <Link to="/login">
           <div className="header-option" >
             <span className="header-optionLineOne">
-              Hello 
+              Hello {user? user.email : "Guest"}
             </span>
             <span className="header-optionLineTwo">
               "sign in"
